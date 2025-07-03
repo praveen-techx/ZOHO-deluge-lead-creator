@@ -1,0 +1,19 @@
+// Creating a new Lead in Zoho CRM from Creator form
+lead_data = map();
+lead_data.put("Company", input.Company);
+lead_data.put("Last_Name", input.Last_Name);
+lead_data.put("Email", input.Email);
+
+data_list = list();
+data_list.add(lead_data);
+
+crm_payload = map();
+crm_payload.put("data", data_list);
+
+response = zoho.crm.invokeAPI(
+    url: "/crm/v2/Leads",
+    type: "POST",
+    parameters: crm_payload
+);
+
+info response.toString();
